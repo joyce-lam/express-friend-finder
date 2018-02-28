@@ -1,3 +1,69 @@
+var questions = [{
+    question: "abc?",
+    choices: ["1", "2", "3", "4", "5"]
+    }, {
+    question: "def?",
+    choices: ["1", "2", "3", "4", "5"] 
+    }, {
+    question: "ghi?",
+    choices: ["1", "2", "3", "4", "5"]
+    }, {
+    question: "ijk?",
+    choices: ["1", "2", "3", "4", "5"]
+    }, {
+    question: "lmn?",
+    choices: ["1", "2", "3", "4", "5"]
+    }];
+
+function showQuestion() {
+    var questionGroups = $('#question-groups');
+
+    for (var i = 0; i<questions.length; i++) {
+        var questionGroup = $("<div>");
+        questionGroup.attr("id", ('group' +i));
+        questionGroup.addClass("question-group");
+        var questionDiv = $("<div>");
+        questionDiv.addClass("qdiv");
+        questionDiv.data("q", i);
+        questionDiv.html(questions[i].question);
+        questionGroup.append(questionDiv);
+
+        for (var j = 0; j < questions[i].choices.length; j++) {
+            var choiceBtn = $("<button>");
+            choiceBtn.addClass("btn btn-info");
+            choiceBtn.data("questionId", i);
+            choiceBtn.data("choice", j);
+            choiceBtn.text(questions[i].choices[j]);
+            questionGroup.append(choiceBtn);
+        }
+
+        questionGroups.append(questionGroup);
+    }
+}
+
+function saveAnswer() {
+    $("button").click(function (){
+            var qId = parseInt($(this).data("questionId"));
+            var qChoice = parseInt($(this).data("choice"));
+            $(this).addClass("selected").siblings().removeClass("selected");
+    })
+}
+
+// function compareAnswer() {
+//     var scores = [];
+//     $(".question-group").each(function() {
+//         var selectedButton = $(this).children("button.selected");
+//         var data = $(selectedButton).data();
+//         var qId = data.questionId;
+//         var choice = data.choice;
+
+
+//     })  
+
+// }
+
+
+
 $("#submit").on("click", function(event) {
     event.preventDefault();
 
@@ -26,21 +92,8 @@ $("#submit").on("click", function(event) {
 
 
 
-function saveAnswer() {
-    $("button").click(function (){
-            $(this).addClass("selected").siblings().removeClass("selected");
-    })
-}
 
 
-function compareAnswer() {
-    $(".btn.btn-success").each(function() {
-        var selectedButton = $(this).children("button.selected");
-
-        
-
-    })  
-}
 
 
 
@@ -96,3 +149,5 @@ function validateClick() {
     })
     return isValid;
 }
+
+$(document).ready(showQuestion);

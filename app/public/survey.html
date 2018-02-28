@@ -11,7 +11,7 @@
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
+    <script type="text/javascript" src="../javascript/app.js"></script>
 </head>
 
 <body>
@@ -38,93 +38,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <h4>1. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <button type="button" id="q1" class="btn btn-success" value="1">1</button>
-                        <button type="button" id="q1" class="btn btn-success" value="2">2</button>
-                        <button type="button" id="q1" class="btn btn-success" value="3">3</button>
-                        <button type="button" id="q1" class="btn btn-success" value="4">4</button>
-                        <button type="button" id="q1" class="btn btn-success" value="5">5</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <h4>2. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group" id="q2">
-                        <button type="button" class="btn btn-success" value="1">1</button>
-                        <button type="button" class="btn btn-success" value="2">2</button>
-                        <button type="button" class="btn btn-success" value="3">3</button>
-                        <button type="button" class="btn btn-success" value="4">4</button>
-                        <button type="button" class="btn btn-success" value="5">5</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <h4>3. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group"  id="q3">
-                        <button type="button" class="btn btn-success" value="1">1</button>
-                        <button type="button" class="btn btn-success" value="2">2</button>
-                        <button type="button" class="btn btn-success" value="3">3</button>
-                        <button type="button" class="btn btn-success" value="4">4</button>
-                        <button type="button" class="btn btn-success" value="5">5</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <h4>4. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group"  id="q4">
-                        <button type="button" class="btn btn-success" value="1">1</button>
-                        <button type="button" class="btn btn-success" value="2">2</button>
-                        <button type="button" class="btn btn-success" value="3">3</button>
-                        <button type="button" class="btn btn-success" value="4">4</button>
-                        <button type="button" class="btn btn-success" value="5">5</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <h4>5. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group"  id="q5">
-                        <button type="button" class="btn btn-success" value="1">1</button>
-                        <button type="button" class="btn btn-success" value="2">2</button>
-                        <button type="button" class="btn btn-success" value="3">3</button>
-                        <button type="button" class="btn btn-success" value="4">4</button>
-                        <button type="button" class="btn btn-success" value="5">5</button>
-                    </div>
-                </div>
-            </div>
+            <div id="question-groups"></div>
         </div>
         <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-        <!--     <div id="results-modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title"><strong>Best Match</strong></h2>
-                </div>
-                <div class="modal-body">
-                    <h2 id="match-name"></h2>
-                    <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div> -->
-        <!-- Modal -->
+
         <div class="modal fade" id="myModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -149,106 +66,5 @@
         </div>
     </footer>
 </body>
-<script type="text/javascript">
-$("#submit").on("click", function(event) {
-    event.preventDefault();
-
-    // validateInput();
-    // validateClick();
-    //saveAnswer();
-    //if (validateInput() && validateClick()) {
-
-        var newFriend = {
-            friendName: $("#name-input").val().trim(),
-            photoLink: $("#photo-link").val().trim(),
-            scores: [
-                $("#q1").val(),
-                $("#q2").val(),
-                $("#q3").val(),
-                $("#q4").val(),
-                $("#q5").val()
-            ]
-        };
-
-    console.log(newFriend);
-    postReq(newFriend);
-
-    //}
-})
-
-
-
-function saveAnswer() {
-    $("button").click(function (){
-            $(this).addClass("selected").siblings().removeClass("selected");
-    })
-}
-
-
-function compareAnswer() {
-    $(".btn.btn-success").each(function() {
-        var selectedButton = $(this).children("button.selected");
-
-        
-
-    })  
-}
-
-
-
-
-
-function postReq(friendData) {
-    $.post("/api/friends", friendData, function(data) {
-        if (data) {
-            for (var i = 0; i < friendData.length; i++) {
-                var result = $("<div>");
-                result.attr("id", "friend-result-" + i + 1);
-                $("#myModal").append(result);
-            }
-        } 
-    });
-}
-
-
-// function runSearch() {
-//     var currentURL = window.location.origin;
-
-//     $.ajax({
-//         url: currentURL + "/api/friends",
-//         method: "GET"
-//     }).then(function(friendData) {
-//         console.log(friendData);
-//         for (var i = 0; i < friendData.length; i++) {
-//             var result = $("<div>");
-//             result.attr("id", "friend-result-" + i + 1);
-//             $("#myModal").append(result);
-//         }
-//     });
-// }
-
-// runSearch();
-
-function validateInput() {
-    var isValid = true;
-    $(".form-control").each(function() {
-        if ($(this).val() === "") {
-            isValid = false;
-        }
-    });
-    return isValid;
-}
-
-function validateClick() {
-    var isValid = true;
-    $(".btn-toolbar").each(function() {
-        if ($(this).val() === "") {
-            isValid = false;
-        }
-    })
-    return isValid;
-}
-
-</script>
 
 </html>
