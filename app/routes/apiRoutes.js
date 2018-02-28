@@ -5,7 +5,7 @@ module.exports = function(app) {
 		res.json(friendsData);
 	});
 
-	app.post("api/friends", function(req, res) {
+	app.post("/api/friends", function(req, res) {
 		for (var i = 0; i < friendsData.length; i++) {
 			friendsData.push(req.body);
 			res.json(true);

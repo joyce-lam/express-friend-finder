@@ -41,12 +41,12 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h4>1. What describes you the best? Tell us about you</h4>
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group" id="q1">
-                        <button type="button" class="btn btn-success" value="1">1</button>
-                        <button type="button" class="btn btn-success" value="2">2</button>
-                        <button type="button" class="btn btn-success" value="3">3</button>
-                        <button type="button" class="btn btn-success" value="4">4</button>
-                        <button type="button" class="btn btn-success" value="5">5</button>
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button type="button" id="q1" class="btn btn-success" value="1">1</button>
+                        <button type="button" id="q1" class="btn btn-success" value="2">2</button>
+                        <button type="button" id="q1" class="btn btn-success" value="3">3</button>
+                        <button type="button" id="q1" class="btn btn-success" value="4">4</button>
+                        <button type="button" id="q1" class="btn btn-success" value="5">5</button>
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@ $("#submit").on("click", function(event) {
 
     // validateInput();
     // validateClick();
-
+    //saveAnswer();
     //if (validateInput() && validateClick()) {
 
         var newFriend = {
@@ -177,25 +177,25 @@ $("#submit").on("click", function(event) {
 })
 
 
-function validateInput() {
-    var isValid = true;
-    $(".form-control").each(function() {
-        if ($(this).val() === "") {
-            isValid = false;
-        }
-    });
-    return isValid;
+
+function saveAnswer() {
+    $("button").click(function (){
+            $(this).addClass("selected").siblings().removeClass("selected");
+    })
 }
 
-function validateClick() {
-    var isValid = true;
-    $(".btn-toolbar").each(function() {
-        if ($(this).val() === "") {
-            isValid = false;
-        }
-    })
-    return isValid;
+
+function compareAnswer() {
+    $(".btn.btn-success").each(function() {
+        var selectedButton = $(this).children("button.selected");
+
+        
+
+    })  
 }
+
+
+
 
 
 function postReq(friendData) {
@@ -228,6 +228,27 @@ function postReq(friendData) {
 // }
 
 // runSearch();
+
+function validateInput() {
+    var isValid = true;
+    $(".form-control").each(function() {
+        if ($(this).val() === "") {
+            isValid = false;
+        }
+    });
+    return isValid;
+}
+
+function validateClick() {
+    var isValid = true;
+    $(".btn-toolbar").each(function() {
+        if ($(this).val() === "") {
+            isValid = false;
+        }
+    })
+    return isValid;
+}
+
 </script>
 
 </html>
