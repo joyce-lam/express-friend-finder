@@ -40,8 +40,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h4>1. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="q1">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group" id="q1">
                         <button type="button" class="btn btn-success" value="1">1</button>
                         <button type="button" class="btn btn-success" value="2">2</button>
                         <button type="button" class="btn btn-success" value="3">3</button>
@@ -54,8 +54,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h4>2. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="q2">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group" id="q2">
                         <button type="button" class="btn btn-success" value="1">1</button>
                         <button type="button" class="btn btn-success" value="2">2</button>
                         <button type="button" class="btn btn-success" value="3">3</button>
@@ -68,8 +68,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h4>3. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="q3">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group"  id="q3">
                         <button type="button" class="btn btn-success" value="1">1</button>
                         <button type="button" class="btn btn-success" value="2">2</button>
                         <button type="button" class="btn btn-success" value="3">3</button>
@@ -82,8 +82,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h4>4. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="q4">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group"  id="q4">
                         <button type="button" class="btn btn-success" value="1">1</button>
                         <button type="button" class="btn btn-success" value="2">2</button>
                         <button type="button" class="btn btn-success" value="3">3</button>
@@ -96,8 +96,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <h4>5. What describes you the best? Tell us about you</h4>
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="q5">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group"  id="q5">
                         <button type="button" class="btn btn-success" value="1">1</button>
                         <button type="button" class="btn btn-success" value="2">2</button>
                         <button type="button" class="btn btn-success" value="3">3</button>
@@ -153,10 +153,11 @@
 $("#submit").on("click", function(event) {
     event.preventDefault();
 
-    validateInput();
-    validateClick();
+    // validateInput();
+    // validateClick();
 
-    if (validateInput() && validateClick()) {
+    //if (validateInput() && validateClick()) {
+
         var newFriend = {
             friendName: $("#name-input").val().trim(),
             photoLink: $("#photo-link").val().trim(),
@@ -168,7 +169,11 @@ $("#submit").on("click", function(event) {
                 $("#q5").val()
             ]
         };
-    }
+
+    console.log(newFriend);
+    postReq(newFriend);
+
+    //}
 })
 
 
@@ -193,27 +198,36 @@ function validateClick() {
 }
 
 
-
-
-
-
-function runSearch() {
-    var currentURL = window.location.origin;
-
-    $.ajax({
-        url: currentURL + "/api/friends",
-        method: "GET"
-    }).then(function(friendData) {
-        console.log(friendData);
-        for (var i = 0; i < friendData.length; i++) {
-            var result = $("<div>");
-            result.attr("id", "friend-result-" + i + 1);
-            $("#myModal").append(result);
-        }
+function postReq(friendData) {
+    $.post("/api/friends", friendData, function(data) {
+        if (data) {
+            for (var i = 0; i < friendData.length; i++) {
+                var result = $("<div>");
+                result.attr("id", "friend-result-" + i + 1);
+                $("#myModal").append(result);
+            }
+        } 
     });
 }
 
-runSearch();
+
+// function runSearch() {
+//     var currentURL = window.location.origin;
+
+//     $.ajax({
+//         url: currentURL + "/api/friends",
+//         method: "GET"
+//     }).then(function(friendData) {
+//         console.log(friendData);
+//         for (var i = 0; i < friendData.length; i++) {
+//             var result = $("<div>");
+//             result.attr("id", "friend-result-" + i + 1);
+//             $("#myModal").append(result);
+//         }
+//     });
+// }
+
+// runSearch();
 </script>
 
 </html>

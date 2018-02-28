@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/joyce-lam/express-friend-finder/issues"
   },
-  "homepage": "https://github.com/joyce-lam/express-friend-finder#readme"
+  "homepage": "https://github.com/joyce-lam/express-friend-finder#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "path": "^0.12.7"
+  }
 }
