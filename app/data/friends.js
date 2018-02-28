@@ -2,8 +2,11 @@ var friendsArray = [
 	{
 		name:,
 		photo:,
-		scores:[
-			]
+		scores:["1",
+				"2",
+				"2",
+				"3",
+				"5"]
 	}];
 
 
