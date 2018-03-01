@@ -146,15 +146,15 @@ function runQuery() {
 function renderModal(friendData) {
     $(".modal-content").empty();
     console.log("modal" + friendData);
-    // for (var i = 0; i < friendData.length; i++) {
-    //     var name = $("<h3>");
-    //     name.text(friendData[i].name);
+    for (var i = 0; i < friendData.length; i++) {
+        var name = $("<h3>");
+        name.text(friendData[i].name);
 
-    //     var photo = $("<p>");
-    //     photo.text(friendData[i].photo);
+        var photo = $("<p>");
+        photo.text(friendData[i].photo);
 
-    //     $("#myModal").append(name, photo);
-    // }
+        $(".modal-content").append(name, photo);
+    }
 
 }
 
