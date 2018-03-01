@@ -92,27 +92,11 @@ function listenEvents() {
                 1, 2, 3, 4, 5
             ]
         };
-        postReq(newFriend);
+        //postReq(newFriend);
+        runQuery();
 
     });
 }
-
-
-function postReq(friendData) {
-    $.post("/api/friends", friendData, function(data) {
-        if (data) {
-            // for (var i = 0; i < friendData.length; i++) {
-            //     var result = $("<div>");
-            //     result.attr("id", "friend-result-" + i + 1);
-            //     $("#myModal").append(result);
-            // }
-            console.log(data);
-        } 
-    });
-}
-
-
-
 
 function validateInput() {
     var isValid = true;
@@ -133,6 +117,32 @@ function validateClick() {
     })
     return isValid;
 }
+
+
+// function postReq(friendData) {
+//     $.post("/api/friends", friendData, function(data) {
+//         console.log(data);
+//         if (data) {
+//             for (var i = 0; i < friendData.length; i++) {
+//                 var result = $("<div>");
+//             //     result.attr("id", "friend-result-" + i + 1);
+//                 $("#myModal").append(result);
+//             }
+//         } 
+//     });
+// }
+
+function runQuery() {
+    var currentURL = window.location.origin;
+    $.ajax({
+        url: currentURL + "/api/friends",
+        method: "GET"
+    }).then(function(data) {
+        console.log(data);
+        $("#myModal").append(data);
+    })
+}
+
 
 $(document).ready(function() {
     renderQuestion();
