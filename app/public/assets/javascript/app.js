@@ -123,7 +123,7 @@ function postReq(newFriend) {
     $.post("/api/friends", newFriend, function(data) {
         console.log(data);
         if (data) {
-           console.log(data);
+           console.log("a" + data);
         } 
     });
     runQuery();
@@ -135,7 +135,7 @@ function runQuery() {
         url: currentURL + "/api/friends",
         method: "GET"
     }).then(function(friendData) {
-        console.log(friendData);
+        console.log("b" + friendData);
         renderModal(friendData);
     })
 }
