@@ -55,46 +55,49 @@ function markSelection() {
     })
 }
 
-$("#submit").click(function(event) {
-    event.preventDefault();
-    //recordSelection();
-    console.log("abc");
-    validateInput();
-    validateClick();
-    var scores = [];
+function listenEvents() {
+    $("#submit").click(function(event) {
+        event.preventDefault();
+        //recordSelection();
+        console.log("abc");
+        validateInput();
+        validateClick();
+        var scores = [];
 
 
-    if (validateInput() && validateClick()) {
-        $(".question-group").each(function() {
-            var selectedButton = $(this).children("button.selected");
-            var data = $(selectedButton).data();
-            var qId = data.questionId;
-            var choice = data.choice;
-            console.log(qId, choice);
-            scores.push(choice);
+        if (validateInput() && validateClick()) {
 
-        })
+            $(".question-group").each(function() {
+                var selectedButton = $(this).children("button.selected");
+                var data = $(selectedButton).data();
+                var qId = data.questionId;
+                var choice = data.choice;
+                console.log(qId, choice);
+                scores.push(choice);
 
-        var newFriend = {
-            friendName: $("#name-input").val().trim(),
-            photoLink: $("#photo-link").val().trim(),
-            scores: scores
-        };
+            })
+            var newFriend = {
+                friendName: $("#name-input").val().trim(),
+                photoLink: $("#photo-link").val().trim(),
+                scores: scores
+            };
         console.log(newFriend);
         postReq(newFriend);
-    }
+        }
 
-});
+    });
+}
 
 
 function postReq(friendData) {
     $.post("/api/friends", friendData, function(data) {
         if (data) {
-            for (var i = 0; i < friendData.length; i++) {
-                var result = $("<div>");
-                result.attr("id", "friend-result-" + i + 1);
-                $("#myModal").append(result);
-            }
+            // for (var i = 0; i < friendData.length; i++) {
+            //     var result = $("<div>");
+            //     result.attr("id", "friend-result-" + i + 1);
+            //     $("#myModal").append(result);
+            // }
+            console.log(data);
         } 
     });
 }
@@ -122,5 +125,8 @@ function validateClick() {
     return isValid;
 }
 
-$(document).ready(renderQuestion);
+$(document).ready(function() {
+    renderQuestion();
+    listenEvents();
+});
 
