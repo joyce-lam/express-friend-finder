@@ -145,7 +145,16 @@ function runQuery() {
 
 function renderModal(friendData) {
     $(".modal-content").empty();
-    $(".modal-content").append(friendData);
+    for (var i = 0; i < friendData.length; i++) {
+        var name = $("<h3>");
+        name.text(friendData[i].name);
+
+        var photo = $("<p>");
+        photo.text(friendData[i].photoLink);
+
+        $(".modal-content").append(name, photo);
+    }
+
 }
 
 
