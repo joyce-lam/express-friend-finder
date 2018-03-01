@@ -92,7 +92,7 @@ function listenEvents() {
                 1, 2, 3, 4, 5
             ]
         };
-        //postReq(newFriend);
+        postReq(newFriend);
         runQuery();
 
     });
@@ -119,18 +119,15 @@ function validateClick() {
 }
 
 
-// function postReq(friendData) {
-//     $.post("/api/friends", friendData, function(data) {
-//         console.log(data);
-//         if (data) {
-//             for (var i = 0; i < friendData.length; i++) {
-//                 var result = $("<div>");
-//             //     result.attr("id", "friend-result-" + i + 1);
-//                 $("#myModal").append(result);
-//             }
-//         } 
-//     });
-// }
+function postReq(newFriend) {
+    $.post("/api/friends", newFriend, function(data) {
+        console.log(data);
+        if (data) {
+           console.log(data);
+        } 
+    });
+    runQuery();
+}
 
 function runQuery() {
     var currentURL = window.location.origin;
