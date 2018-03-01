@@ -137,10 +137,15 @@ function runQuery() {
     $.ajax({
         url: currentURL + "/api/friends",
         method: "GET"
-    }).then(function(data) {
-        console.log(data);
-        $("#myModal").append(data);
+    }).then(function(friendData) {
+        console.log(friendData);
+        renderModal(friendData);
     })
+}
+
+function renderModal(friendData) {
+    $(".modal-content").empty();
+    $(".modal-content").append(friendData);
 }
 
 
