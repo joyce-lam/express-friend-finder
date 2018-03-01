@@ -144,7 +144,7 @@ function runQuery() {
 }
 
 function renderModal(friendData) {
-    $(".modal-content").empty();
+    // $(".modal-content").empty();
     for (var i = 0; i < friendData.length; i++) {
         var name = $("<h3>");
         name.text(friendData[i].name);
@@ -152,7 +152,7 @@ function renderModal(friendData) {
         var photo = $("<p>");
         photo.text(friendData[i].photo);
 
-        $(".modal-content").append(name, photo);
+        $("#result").append(name, photo);
     }
 
 }
