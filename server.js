@@ -10,7 +10,6 @@ var PORT = process.env.PORT || 3000;
 //sets up express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.text());
 
 require("./app/routes/apiRoutes")(app);
 require("./app/routes/htmlRoutes")(app);

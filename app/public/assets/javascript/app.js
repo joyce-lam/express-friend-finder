@@ -65,25 +65,34 @@ function listenEvents() {
         var scores = [];
 
 
-        if (validateInput() && validateClick()) {
+        // if (validateInput() && validateClick()) {
 
-            $(".question-group").each(function() {
-                var selectedButton = $(this).children("button.selected");
-                var data = $(selectedButton).data();
-                var qId = data.questionId;
-                var choice = data.choice;
-                console.log(qId, choice);
-                scores.push(choice);
+        //     $(".question-group").each(function() {
+        //         var selectedButton = $(this).children("button.selected");
+        //         var data = $(selectedButton).data();
+        //         var qId = data.questionId;
+        //         var choice = parseInt(data.choice);
+        //         console.log(qId, choice);
+        //         scores.push(choice);
 
-            })
-            var newFriend = {
-                friendName: $("#name-input").val().trim(),
-                photoLink: $("#photo-link").val().trim(),
-                scores: scores
-            };
-        console.log(newFriend);
+        //     })
+        //     var newFriend = {
+        //         friendName: $("#name-input").val().trim(),
+        //         photoLink: $("#photo-link").val().trim(),
+        //         scores: scores
+        //     };
+        // console.log(newFriend);
+        // postReq(newFriend);
+        // }
+
+        var newFriend = {
+            friendName: 'asdf',
+            photoLink: 'asdf',
+            scores: [
+                1, 2, 3, 4, 5
+            ]
+        };
         postReq(newFriend);
-        }
 
     });
 }

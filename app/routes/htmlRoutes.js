@@ -1,4 +1,6 @@
+var express = require("express");
 var path = require("path");
+
 
 module.exports = function(app) {
 
@@ -10,10 +12,9 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/survey.html"));
   });
 
-  // If no matching route is found default to home
+  app.use(express.static(path.join(__dirname, "../public")));
+
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
-
-
 };

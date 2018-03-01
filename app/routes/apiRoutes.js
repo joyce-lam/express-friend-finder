@@ -6,10 +6,13 @@ module.exports = function(app) {
 	});
 
 	app.post("/api/friends", function(req, res) {
-		for (var i = 0; i < friendsData.length; i++) {
-			friendsData.push(req.body);
-			res.json(true);
+		var body = req.body;
+		// assume valid req and clean up strings
+		for (var i = 0; i < body.scores.length; i++) {
+			body.scores[i] = parseInt(body.scores[i]);
 		}
+		friendsData.push(body);
+		res.json(true);
 	});
 
 };
