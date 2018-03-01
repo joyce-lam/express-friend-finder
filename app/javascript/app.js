@@ -1,26 +1,28 @@
+//questions array
 var questions = [{
     question: "abc?",
     choices: ["1", "2", "3", "4", "5"]
-    }, {
+}, {
     question: "def?",
-    choices: ["1", "2", "3", "4", "5"] 
-    }, {
+    choices: ["1", "2", "3", "4", "5"]
+}, {
     question: "ghi?",
     choices: ["1", "2", "3", "4", "5"]
-    }, {
+}, {
     question: "ijk?",
     choices: ["1", "2", "3", "4", "5"]
-    }, {
+}, {
     question: "lmn?",
     choices: ["1", "2", "3", "4", "5"]
-    }];
+}];
 
-function showQuestion() {
+//function to render questions to html
+function renderQuestion() {
     var questionGroups = $('#question-groups');
 
-    for (var i = 0; i<questions.length; i++) {
+    for (var i = 0; i < questions.length; i++) {
         var questionGroup = $("<div>");
-        questionGroup.attr("id", ('group' +i));
+        questionGroup.attr("id", ('group' + i));
         questionGroup.addClass("question-group");
         var questionDiv = $("<div>");
         questionDiv.addClass("qdiv");
@@ -31,72 +33,58 @@ function showQuestion() {
         for (var j = 0; j < questions[i].choices.length; j++) {
             var choiceBtn = $("<button>");
             choiceBtn.addClass("btn btn-info");
-            choiceBtn.data("questionId", i);
-            choiceBtn.data("choice", j);
+            choiceBtn.data("questionId", (i + 1));
+            choiceBtn.data("choice", (j + 1));
             choiceBtn.text(questions[i].choices[j]);
             questionGroup.append(choiceBtn);
         }
 
         questionGroups.append(questionGroup);
     }
+    markSelection();
 }
 
-function saveAnswer() {
-    $("button").click(function (){
-            var qId = parseInt($(this).data("questionId"));
-            var qChoice = parseInt($(this).data("choice"));
-            $(this).addClass("selected").siblings().removeClass("selected");
+//function to mark down user's choice
+function markSelection() {
+    $(".btn.btn-info").click(function(event) {
+        event.preventDefault();
+        var qId = parseInt($(this).data("questionId"));
+        var qChoice = parseInt($(this).data("choice"));
+        $(this).addClass("selected").siblings().removeClass("selected");
+        console.log(qId, qChoice);
     })
 }
 
-// function compareAnswer() {
-//     var scores = [];
-//     $(".question-group").each(function() {
-//         var selectedButton = $(this).children("button.selected");
-//         var data = $(selectedButton).data();
-//         var qId = data.questionId;
-//         var choice = data.choice;
-
-
-//     })  
-
-// }
-
-
-
-$("#submit").on("click", function(event) {
+$("#submit").click(function(event) {
     event.preventDefault();
+    //recordSelection();
+    console.log("abc");
+    validateInput();
+    validateClick();
+    var scores = [];
 
-    // validateInput();
-    // validateClick();
-    //saveAnswer();
-    //if (validateInput() && validateClick()) {
+
+    if (validateInput() && validateClick()) {
+        $(".question-group").each(function() {
+            var selectedButton = $(this).children("button.selected");
+            var data = $(selectedButton).data();
+            var qId = data.questionId;
+            var choice = data.choice;
+            console.log(qId, choice);
+            scores.push(choice);
+
+        })
 
         var newFriend = {
             friendName: $("#name-input").val().trim(),
             photoLink: $("#photo-link").val().trim(),
-            scores: [
-                $("#q1").val(),
-                $("#q2").val(),
-                $("#q3").val(),
-                $("#q4").val(),
-                $("#q5").val()
-            ]
+            scores: scores
         };
+        console.log(newFriend);
+        postReq(newFriend);
+    }
 
-    console.log(newFriend);
-    postReq(newFriend);
-
-    //}
-})
-
-
-
-
-
-
-
-
+});
 
 
 function postReq(friendData) {
@@ -112,23 +100,7 @@ function postReq(friendData) {
 }
 
 
-// function runSearch() {
-//     var currentURL = window.location.origin;
 
-//     $.ajax({
-//         url: currentURL + "/api/friends",
-//         method: "GET"
-//     }).then(function(friendData) {
-//         console.log(friendData);
-//         for (var i = 0; i < friendData.length; i++) {
-//             var result = $("<div>");
-//             result.attr("id", "friend-result-" + i + 1);
-//             $("#myModal").append(result);
-//         }
-//     });
-// }
-
-// runSearch();
 
 function validateInput() {
     var isValid = true;
@@ -150,4 +122,5 @@ function validateClick() {
     return isValid;
 }
 
-$(document).ready(showQuestion);
+$(document).ready(renderQuestion);
+
