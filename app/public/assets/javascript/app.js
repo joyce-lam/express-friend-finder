@@ -122,7 +122,7 @@ function postReq(newFriend) {
     $.post("/api/friends", newFriend, function(data) {
         console.log(data);
         if (data) {
-            console.log("finding your pear");
+            console.log("data" + data);
         }
 
         $("#name-input").val("");
@@ -145,15 +145,16 @@ function runQuery() {
 
 function renderModal(friendData) {
     $(".modal-content").empty();
-    for (var i = 0; i < friendData.length; i++) {
-        var name = $("<h3>");
-        name.text(friendData[i].name);
+    console.log("modal" + friendData);
+    // for (var i = 0; i < friendData.length; i++) {
+    //     var name = $("<h3>");
+    //     name.text(friendData[i].name);
 
-        var photo = $("<p>");
-        photo.text(friendData[i].photo);
+    //     var photo = $("<p>");
+    //     photo.text(friendData[i].photo);
 
-        $("#myModal").append(name, photo);
-    }
+    //     $("#myModal").append(name, photo);
+    // }
 
 }
 
