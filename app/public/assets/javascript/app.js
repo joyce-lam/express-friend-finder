@@ -86,14 +86,13 @@ function listenEvents() {
         // }
 
         var newFriend = {
-            friendName: 'asdf',
-            photoLink: 'asdf',
+            name: 'asdf',
+            photo: 'asdf',
             scores: [
                 1, 2, 3, 4, 5
             ]
         };
         postReq(newFriend);
-        runQuery();
 
     });
 }
