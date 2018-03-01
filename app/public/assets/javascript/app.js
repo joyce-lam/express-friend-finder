@@ -152,7 +152,7 @@ function renderModal(friendData) {
         var photo = $("<p>");
         photo.text(friendData[i].photo);
 
-        $(".modal-content").append(name, photo);
+        $("#myModal").append(name, photo);
     }
 
 }
