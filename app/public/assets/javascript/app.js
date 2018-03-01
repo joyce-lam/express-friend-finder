@@ -67,20 +67,20 @@ function listenEvents() {
 
         // if (validateInput() && validateClick()) {
 
-        //     $(".question-group").each(function() {
-        //         var selectedButton = $(this).children("button.selected");
-        //         var data = $(selectedButton).data();
-        //         var qId = data.questionId;
-        //         var choice = parseInt(data.choice);
-        //         console.log(qId, choice);
-        //         scores.push(choice);
+        $(".question-group").each(function() {
+            var selectedButton = $(this).children("button.selected");
+            var data = $(selectedButton).data();
+            var qId = data.questionId;
+            var choice = parseInt(data.choice);
+            console.log(qId, choice);
+            scores.push(choice);
 
-        //     })
-        //     var newFriend = {
-        //         friendName: $("#name-input").val().trim(),
-        //         photoLink: $("#photo-link").val().trim(),
-        //         scores: scores
-        //     };
+        })
+        var newFriend = {
+            name: $("#name-input").val().trim(),
+            photo: $("#photo-link").val().trim(),
+            scores: scores
+        };
         // console.log(newFriend);
         // postReq(newFriend);
         // }
@@ -122,9 +122,13 @@ function postReq(newFriend) {
     $.post("/api/friends", newFriend, function(data) {
         console.log(data);
         if (data) {
-           console.log("a" + data);
-        } 
+            console.log("finding your pear");
+        }
+
+        $("#name-input").val("");
+        $("#photo-link").val("");
     });
+
     runQuery();
 }
 
@@ -140,7 +144,7 @@ function runQuery() {
 }
 
 function renderModal(friendData) {
-    // $(".modal-content").empty();
+    $(".modal-content").empty();
     for (var i = 0; i < friendData.length; i++) {
         var name = $("<h3>");
         name.text(friendData[i].name);
@@ -148,7 +152,7 @@ function renderModal(friendData) {
         var photo = $("<p>");
         photo.text(friendData[i].photo);
 
-        $("#result").append(name, photo);
+        $(".modal-content").append(name, photo);
     }
 
 }
@@ -158,4 +162,3 @@ $(document).ready(function() {
     renderQuestion();
     listenEvents();
 });
-
