@@ -55,33 +55,37 @@ function markSelection() {
     })
 }
 
+//function to listen to onclick of submit button
 function listenEvents() {
     $("#submit").click(function(event) {
         event.preventDefault();
-        //recordSelection();
-        console.log("abc");
 
-        // validateInput();
-        // validateClick();
+        validateInput();
+        validateClick();
         var scores = [];
 
 
-        // if (validateInput() && validateClick()) {
+        if (validateInput() && validateClick()) {
 
-        $(".question-group").each(function() {
-            var selectedButton = $(this).children("button.selected");
-            var data = $(selectedButton).data();
-            var qId = data.questionId;
-            var choice = parseInt(data.choice);
-            console.log(qId, choice);
-            scores.push(choice);
+            $(".question-group").each(function() {
+                var selectedButton = $(this).children("button.selected");
+                var data = $(selectedButton).data();
+                var qId = data.questionId;
+                var choice = parseInt(data.choice);
+                console.log(qId, choice);
+                scores.push(choice);
 
-        })
-        var newFriend = {
-            name: $("#name-input").val().trim(),
-            photo: $("#photo-link").val().trim(),
-            scores: scores
-        };
+            })
+            var newFriend = {
+                name: $("#name-input").val().trim(),
+                photo: $("#photo-link").val().trim(),
+                scores: scores
+            };
+        } else {
+            alert("Fill in the missing space.");
+            location.reload();
+            return;
+        }
         postReq(newFriend);
 
     });
@@ -128,10 +132,7 @@ function runQuery() {
         url: currentURL + "/api/friends",
         method: "GET"
     }).then(function(friendData) {
-        console.log("b" + friendData);
-
-        //renderResults(friendData);
-
+        console.log(friendData);
         compareMatch(friendData);
     })
 }
@@ -148,12 +149,9 @@ function compareMatch(friendData) {
             difference += Math.abs(userScore[j] - scores[j]);
             console.log("diff" + difference);
         }
-
         comparison.push(difference);
     }
-
     console.log(comparison);
-
     indexOfMinimum(comparison, friendData);
 }
 
@@ -161,39 +159,29 @@ function indexOfMinimum(array, friendData) {
     var minValue = array[0];
     var minIndex = 0;
     for (var i = 1; i < array.length; i++) {
-        if(array[i] < minValue) {
+        if (array[i] < minValue) {
             minIndex = i;
             minValue = array[i];
         }
-    }
-    renderResults(minIndex, friendData);
+        renderResults(minIndex, friendData);
     return minIndex, friendData;
+    }
+    
 }
 
 
 
 function renderResults(index, friendData) {
-
+    $(".modal-content").empty();
     var bestMatch = friendData[index];
-    console.log("modal" + bestMatch);
-    // for (var i = 0; i < friendData.length; i++) {
-    //     var name = $("<h3>");
-    //     name.text(friendData[i].name);
-
-    //     var photo = $("<p>");
-    //     photo.text(friendData[i].photo);
-
-    //     $(".modal-content").append(name, photo);
-    //     //$("#result").append(name, photo);
-    // }
+    console.log(bestMatch);
 
     var name = $("<h3>");
     name.text(bestMatch.name);
+    var photo = $("<img>");
+    photo.attr("src", bestMatch.photo);
 
-    var photo = $("<p>");
-    photo.text(bestMatch.photo);
-     $(".modal-content").append(name, photo);
-
+    $(".modal-content").append(name, photo);
 }
 
 
