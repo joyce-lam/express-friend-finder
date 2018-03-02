@@ -60,8 +60,9 @@ function listenEvents() {
         event.preventDefault();
         //recordSelection();
         console.log("abc");
-        validateInput();
-        validateClick();
+
+        // validateInput();
+        // validateClick();
         var scores = [];
 
 
@@ -85,13 +86,13 @@ function listenEvents() {
         // postReq(newFriend);
         // }
 
-        var newFriend = {
-            name: 'asdf',
-            photo: 'asdf',
-            scores: [
-                1, 2, 3, 4, 5
-            ]
-        };
+        // var newFriend = {
+        //     name: 'asdf',
+        //     photo: 'asdf',
+        //     scores: [
+        //         1, 2, 3, 4, 5
+        //     ]
+        // };
         postReq(newFriend);
 
     });
