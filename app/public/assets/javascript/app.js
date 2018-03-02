@@ -130,7 +130,9 @@ function runQuery() {
     }).then(function(friendData) {
         console.log("b" + friendData);
 
-        renderResults(friendData);
+        //renderResults(friendData);
+
+        compareMatch(friendData);
     })
 }
 
