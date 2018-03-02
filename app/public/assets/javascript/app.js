@@ -64,9 +64,7 @@ function listenEvents() {
         validateClick();
         var scores = [];
 
-
         if (validateInput() && validateClick()) {
-
             $(".question-group").each(function() {
                 var selectedButton = $(this).children("button.selected");
                 var data = $(selectedButton).data();
@@ -76,21 +74,24 @@ function listenEvents() {
                 scores.push(choice);
 
             })
+
             var newFriend = {
                 name: $("#name-input").val().trim(),
                 photo: $("#photo-link").val().trim(),
                 scores: scores
             };
+
         } else {
             alert("Fill in the missing space.");
             location.reload();
             return;
         }
-        postReq(newFriend);
 
+        postReq(newFriend);
     });
 }
 
+//function to validate if user has filled in all info
 function validateInput() {
     var isValid = true;
     $(".form-control").each(function() {
@@ -101,6 +102,7 @@ function validateInput() {
     return isValid;
 }
 
+//function to validate if all questions are answered
 function validateClick() {
     var isValid = true;
     $(".btn-toolbar").each(function() {
@@ -111,7 +113,7 @@ function validateClick() {
     return isValid;
 }
 
-
+//function to make post request to /api/friends
 function postReq(newFriend) {
     $.post("/api/friends", newFriend, function(data) {
         console.log(data);
@@ -126,6 +128,7 @@ function postReq(newFriend) {
     runQuery();
 }
 
+//function to make ajax call to /api/friends
 function runQuery() {
     var currentURL = window.location.origin;
     $.ajax({
@@ -137,6 +140,7 @@ function runQuery() {
     })
 }
 
+//function to compare scores 
 function compareMatch(friendData) {
     var userScore = friendData[(friendData.length) - 1].scores;
     console.log(userScore);
@@ -155,6 +159,7 @@ function compareMatch(friendData) {
     indexOfMinimum(comparison, friendData);
 }
 
+//function to find the index of the matching object
 function indexOfMinimum(array, friendData) {
     var minValue = array[0];
     var minIndex = 0;
@@ -169,22 +174,21 @@ function indexOfMinimum(array, friendData) {
     
 }
 
-
-
+//function to render results to modal
 function renderResults(index, friendData) {
     $(".modal-content").empty();
     var bestMatch = friendData[index];
     console.log(bestMatch);
 
     var name = $("<h3>");
-    name.text(bestMatch.name);
+    name.text(bestMatch.name + " and You are a Great Pear!");
     var photo = $("<img>");
     photo.attr("src", bestMatch.photo);
 
     $(".modal-content").append(name, photo);
 }
 
-
+//function to kick of functions when document is loaded
 $(document).ready(function() {
     renderQuestion();
     listenEvents();

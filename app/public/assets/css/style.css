@@ -1,0 +1,24 @@
+#myModal {
+    background: white; 
+    opacity: 0.85;
+    font-weight: bold;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:75%;
+    height:75%;
+    border-radius: 100px;
+    padding: 40px;
+}
+
+.modalClose {
+    font-size: 96px;
+    box-shadow: 12px 4px 7px 2px black;
+    text-align: center;
+}
+
+img {
+    width: 300px;
+    height: auto;
+}

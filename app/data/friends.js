@@ -1,3 +1,5 @@
+//friends database
+
 var friendsArray = [
 	{
 		name: "Catana",
