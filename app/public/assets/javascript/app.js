@@ -168,9 +168,7 @@ function indexOfMinimum(array, friendData) {
     return minIndex, friendData;
 }
 
-function bestMatch(index, data) {
-    friendData[index].
-}
+
 
 function renderResults(index, friendData) {
 
