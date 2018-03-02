@@ -144,7 +144,6 @@ function runQuery() {
 }
 
 function renderModal(friendData) {
-    $(".modal-content").empty();
     console.log("modal" + friendData);
     for (var i = 0; i < friendData.length; i++) {
         var name = $("<h3>");
