@@ -164,7 +164,7 @@ function indexOfMinimum(array, friendData) {
             minValue = array[i];
         }
     }
-    renderResults(index, friendData);
+    renderResults(minIndex, friendData);
     return minIndex, friendData;
 }
 
