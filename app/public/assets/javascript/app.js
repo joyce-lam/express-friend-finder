@@ -82,17 +82,6 @@ function listenEvents() {
             photo: $("#photo-link").val().trim(),
             scores: scores
         };
-        // console.log(newFriend);
-        // postReq(newFriend);
-        // }
-
-        // var newFriend = {
-        //     name: 'asdf',
-        //     photo: 'asdf',
-        //     scores: [
-        //         1, 2, 3, 4, 5
-        //     ]
-        // };
         postReq(newFriend);
 
     });
@@ -140,22 +129,70 @@ function runQuery() {
         method: "GET"
     }).then(function(friendData) {
         console.log("b" + friendData);
-        renderModal(friendData);
+
+        renderResults(friendData);
     })
 }
 
-function renderModal(friendData) {
-    console.log("modal" + friendData);
-    for (var i = 0; i < friendData.length; i++) {
-        var name = $("<h3>");
-        name.text(friendData[i].name);
+function compareMatch(friendData) {
+    var userScore = friendData[(friendData.length) - 1].scores;
+    console.log(userScore);
 
-        var photo = $("<p>");
-        photo.text(friendData[i].photo);
+    var comparison = [];
+    for (var i = 0; i < (friendData.length - 1); i++) {
+        var scores = friendData[i].scores;
+        var difference = 0;
+        for (var j = 0; j < scores.length; j++) {
+            difference += Math.abs(userScore[j] - scores[j]);
+            console.log("diff" + difference);
+        }
 
-        $(".modal-content").append(name, photo);
-        $("#result").append(name, photo);
+        comparison.push(difference);
     }
+
+    console.log(comparison);
+
+    indexOfMinimum(comparison, friendData);
+}
+
+function indexOfMinimum(array, friendData) {
+    var minValue = array[0];
+    var minIndex = 0;
+    for (var i = 1; i < array.length; i++) {
+        if(array[i] < minValue) {
+            minIndex = i;
+            minValue = array[i];
+        }
+    }
+    renderResults(index, friendData);
+    return minIndex, friendData;
+}
+
+function bestMatch(index, data) {
+    friendData[index].
+}
+
+function renderResults(index, friendData) {
+
+    var bestMatch = friendData[index];
+    console.log("modal" + bestMatch);
+    // for (var i = 0; i < friendData.length; i++) {
+    //     var name = $("<h3>");
+    //     name.text(friendData[i].name);
+
+    //     var photo = $("<p>");
+    //     photo.text(friendData[i].photo);
+
+    //     $(".modal-content").append(name, photo);
+    //     //$("#result").append(name, photo);
+    // }
+
+    var name = $("<h3>");
+    name.text(bestMatch.name);
+
+    var photo = $("<p>");
+    photo.text(bestMatch.photo);
+     $(".modal-content").append(name, photo);
 
 }
 
